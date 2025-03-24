@@ -24,9 +24,9 @@ import { AuthorizationGuard } from './guards/authorization.guard';
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
         host: "localhost",
-        database: "db_prac",
-        username: 'postgres',
-        password: "12345678",
+        database: configService.get("db_prac") as string,
+        username: configService.get("db_username") as string,
+        password: configService.get("db_password") as string,
         port: 5432,
         entities: ['dist/entities/*.js'],
         synchronize: true,
