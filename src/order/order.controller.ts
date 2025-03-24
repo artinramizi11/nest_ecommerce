@@ -1,4 +1,4 @@
-import {  BadRequestException, Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards, ValidationPipe } from "@nestjs/common";
+import {  BadRequestException, Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, ValidationPipe } from "@nestjs/common";
 import { OrdersService } from "./order.service";
 import { CreateOrderDto } from "src/dto/create_order.dto";
 import { CreateAddressDto } from "src/dto/create_address.dto";
@@ -6,7 +6,6 @@ import { UpdateAddressDto } from "src/dto/update_address.dto";
 import { Permissions } from "src/enums/permissions.enum";
 import { ApiOperation } from "@nestjs/swagger";
 import { Roles } from "src/enums/roles.enum";
-import { AuthorizationGuard } from "src/guards/authorization.guard";
 import { SetPermissions } from "src/decorators/permissions.decorator";
 import { SetRoles } from "src/decorators/roles.decorator";
 

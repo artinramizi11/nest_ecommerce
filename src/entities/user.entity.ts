@@ -20,5 +20,8 @@ export class User {
     @Column({nullable: true, type: "enum", enum: Roles , default: Roles.Customer})
     role: Roles
 
+    @Column({nullable: true})
+    refresh_token: string 
+
 
 }
