@@ -19,7 +19,6 @@ export class OrderController {
 
     @ApiOperation({summary: "Get all orders"})
     @SetPermissions(Permissions.view_orders)
-    @UseGuards(AuthorizationGuard)
     @Get()
     getAllOrders(){
         return this.ordersService.findAll()

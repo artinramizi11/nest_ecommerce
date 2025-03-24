@@ -17,7 +17,6 @@ export class UsersController {
 
     @SetRoles(Roles.Admin)
     @SetPermissions(Permissions.view_users)
-    @UseGuards(AuthorizationGuard)
     @ApiOperation({summary: "Get all users"})
     @Get()
     getUsers(){
