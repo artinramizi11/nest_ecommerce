@@ -11,8 +11,7 @@ export class UsersService {
     ){}
     
     async findAll(){
-        const users = await this.usersRepository.find({relations: ['orders']})
-        return users
+        return this.usersRepository.find()
     }
 
     async findOne(id: number){

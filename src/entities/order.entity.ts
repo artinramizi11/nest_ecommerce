@@ -10,7 +10,7 @@ export class Order {
     id: number;
 
     @ManyToOne(() => User, user => user.orders , {onDelete:"CASCADE"})
-    @JoinColumn()
+    @JoinColumn({name: "userId"})
     user: User;
 
     @OneToMany(() => OrderItem, item => item.order , {eager: true})

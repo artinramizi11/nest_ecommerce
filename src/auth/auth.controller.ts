@@ -14,6 +14,7 @@ export class AuthController {
         private authService: AuthService
     ){}
 
+    @JwtNotIncluded()
     @Post("register")
     createUser(@Body(new ValidationPipe()) createUser: CreateUserDto){
        return this.authService.createUser(createUser)
