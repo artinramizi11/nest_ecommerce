@@ -61,7 +61,7 @@ export class OrdersService {
 }
 
 async createOrderedItems(createOrder: CreateOrderDto){
-    const orderedItems = Promise.all(createOrder.products.map(async (product) => {
+    const orderedItems = await Promise.all(createOrder.products.map(async (product) => {
         const newItem = this.dataSource.getRepository(OrderItem).create({
             product: {
                 id: product.id,
