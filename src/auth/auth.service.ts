@@ -1,9 +1,11 @@
+import { MailerService } from "@nestjs-modules/mailer";
 import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateUserDto } from "src/dto/create_user.dto";
 import { LoginUserDto } from "src/dto/login_user.dto";
+import { UpdateRoleDto } from "src/dto/update_role.dto";
 import { User } from "src/entities/user.entity";
 import { Repository } from "typeorm";
 
@@ -23,7 +25,8 @@ export class AuthService {
             const newUser  = await this.usersRepository.create({
                 ...user 
              })
-             return await this.usersRepository.save(newUser)
+              await this.usersRepository.save(newUser)
+              return user
         }
         throw new BadRequestException("This email is already in use")
        
@@ -66,6 +69,18 @@ export class AuthService {
         if(!user) throw new NotFoundException("No user found with this id")
         return this.generateToken(userId)
     }
+
+    async updateRole(updateRole: UpdateRoleDto){
+        const user = await this.usersRepository.findOneByOrFail({id: updateRole.userId})
+        if(!user) throw new NotFoundException(`User with this ID: ${updateRole.userId} does not exists`)
+        if(user.role === updateRole.role) throw new BadRequestException("The user has already this role")
+            user.role = updateRole.role
+        await this.usersRepository.save(user)
+        return {message: "Sucessfully updated the role", updatedRole: updateRole.role}
+
+    }
+
+
 
 
 

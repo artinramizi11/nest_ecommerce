@@ -20,6 +20,8 @@ export class AuthorizationGuard implements CanActivate {
 
         const hasRequiredAnyRole = requiredRoles?.some((role) => user.role.includes(role) ?? false)
 
+        console.log(user)
+
         const GetPermissionDataByRole = (role: Roles) => {
             return all_permissions?.[role] ?? undefined
         }

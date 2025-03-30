@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger"
-import { IsIn, IsInt, IsString } from "class-validator"
+import { IsIn, IsInt, IsOptional, IsString } from "class-validator"
 
 export class ProductItem {
     @ApiProperty({example: 1})
@@ -7,6 +7,7 @@ export class ProductItem {
     id: number 
 
     @ApiProperty({example: "monitor"})
+    @IsOptional()
     @IsString()
     name: string
 
